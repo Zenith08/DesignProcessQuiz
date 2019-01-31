@@ -17,6 +17,7 @@
 #include <chrono>
 #include <thread>
 #include "MultipleChoiceQuestion.hpp"
+#include "QuestionBuilder.hpp"
 
 using namespace std;
 
@@ -31,11 +32,17 @@ MCQuestion questions[maxQuestions];
 //The number of questions the player get's correct.
 int score = 0;
 
+//Basically just wait for a number of miliseconds.
+void delay(int mSec);
+void loadQuestions();
+
 int main(int argc, const char * argv[]) {
     
     //Define the initial questions. Should this be on github?
-    questions[0] = MCQuestion("Hello World", "No", "Yes", "True", "False", "B");
-    questions[1] = MCQuestion("Goodbye World", "Awe", "Yay", "What", "Hey!", "A");
+    /*questions[0] = MCQuestion("Hello World", "No", "Yes", "True", "False", "B");
+    questions[1] = MCQuestion("Goodbye World", "Awe", "Yay", "What", "Hey!", "A");*/
+    
+    loadQuestions();
     
     //Introduction
     cout << "Quiz has begun! \n";
@@ -46,6 +53,7 @@ int main(int argc, const char * argv[]) {
     
     //Main game loop of asking questions.
     for(int i = 0; i < maxQuestions; i++){
+        delay(1000); //Delay slightly before each question
         
         //Tell them what question it is and state the question.
         cout << "Question Number? " << i+1 << "\n";
@@ -75,6 +83,8 @@ int main(int argc, const char * argv[]) {
         cout << dashes + "\n";
     }
     
+    delay(500); //Small delay before results.
+    
     //Ends the game and gives summary statistics of the users performance.
     cout << dashes + "\n";
     cout << "Quiz Finished \n";
@@ -87,4 +97,18 @@ int main(int argc, const char * argv[]) {
     cout << dashes + "\n";
     
     return 0;
+}
+
+void delay(int mSec){
+    this_thread::sleep_for(chrono::milliseconds(mSec));
+}
+
+void loadQuestions(){
+    QuestionBuilder builder = QuestionBuilder();
+    builder.findDir();
+    
+    builder.generate("basequestions.txt");
+    for(int i = 0; i < maxQuestions; i++){
+        questions[i] = builder.generated[i];
+    }
 }

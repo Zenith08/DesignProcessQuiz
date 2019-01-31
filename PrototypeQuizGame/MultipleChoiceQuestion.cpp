@@ -47,3 +47,28 @@ bool MCQuestion::validAns(string check){
 string MCQuestion::getCorrectAns(){
     return correct;
 }
+
+//Builder methods not for normal use
+void MCQuestion::setQuestion(string qIn){
+    question = qIn;
+}
+
+void MCQuestion::setA(string aIn){
+    answers[0] = aIn;
+}
+
+void MCQuestion::setB(string bIn){
+    answers[1] = bIn;
+}
+
+void MCQuestion::setC(string cIn){
+    answers[2] = cIn;
+}
+
+void MCQuestion::setD(string dIn){
+    answers[3] = dIn;
+}
+
+void MCQuestion::setCorrect(string ansIn){
+    correct = ansIn;
+}

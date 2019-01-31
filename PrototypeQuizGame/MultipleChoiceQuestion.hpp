@@ -34,6 +34,14 @@ public:
     bool validAns(string check);
     //Returns the string value of the correct answer.
     string getCorrectAns();
+    
+    //Builder methods should not be used by code except to generate questions
+    void setQuestion(string qIn);
+    void setA(string aIn);
+    void setB(string bIn);
+    void setC(string cIn);
+    void setD(string dIn);
+    void setCorrect(string ansIn);
 };
 
 #endif /* MultipleChoiceQuestion_hpp */
