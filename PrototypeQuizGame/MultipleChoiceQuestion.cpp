@@ -23,9 +23,9 @@ MCQuestion::MCQuestion(string quest, string a, string b, string c, string d, str
 };
 
 void MCQuestion::printQuestion(){
-    cout << question +"\n";
-    cout << "A)" + answers[0] + "    B)" + answers[1] + "\n";
-    cout << "C)" + answers[2] + "    D)" + answers[3] + "\n";
+    cout << question << endl;
+    cout << "A)" + answers[0] + "    B)" + answers[1] << endl;
+    cout << "C)" + answers[2] + "    D)" + answers[3] << endl;
 }
 
 bool MCQuestion::isCorrect(string letter){

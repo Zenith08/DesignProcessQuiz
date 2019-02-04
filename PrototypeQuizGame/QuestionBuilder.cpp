@@ -65,7 +65,16 @@ void QuestionBuilder::generate(string file){
 }
 
 void QuestionBuilder::findDir(){
-    ofstream idk("HelloWorld.txt");
+    cout << "Printing?";
+    ofstream idk; //("HelloWorld.txt");
+    idk.open("/Users/Period 2/Desktop/helloworld.txt", fstream::out);
     idk<<100<<endl;
     idk.close();
+    
+    cout << "Does this work?";
+    ifstream cir;
+    cir.open("./hopefulyuseful.txt");
+    string buf;
+    std::getline(cir, buf);
+    cout << buf;
 }
