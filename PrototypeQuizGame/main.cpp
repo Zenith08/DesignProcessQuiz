@@ -11,6 +11,8 @@
 //  Date last modified: Sometime after that.
 //
 //  Known Limitations: The answer must be upper case A, B, C, or D.
+//                     The catagory must be upper case A, B, C, D, E, F, or G.
+//                     Ending the quiz without answering questions gets a score of nan.
 
 #include <iostream>
 
@@ -24,14 +26,16 @@ using namespace std;
 //The total number of questions in the quiz.
 const int maxQuestions = 5;
 //Makes every display of dashes to line things up the same.
-const string dashes = "-------------------------";
+const string dashes = "----------------------------------------";
 
 string catagory = "null!?";
+int catNum = -1;
 
 //The array of all questions which will be asked in this quiz.
 MCQuestion questions[maxQuestions];
 
 //The number of questions the player get's correct.
+int totalRight = 0;
 int score = 0;
 int questionsTaken = 0;
 
@@ -40,6 +44,8 @@ void delay(int mSec);
 void loadQuestions();
 void offerQuestions();
 void gameLoop();
+
+void endCatagory();
 
 //Question catagories
 bool catComplete[6];
@@ -65,13 +71,12 @@ int main(int argc, const char * argv[]) {
     
     cout << dashes << endl;
     cout << "Quiz ended. Thanks for playing." << endl;
-    cout << "Final Score " << score << " out of " << maxQuestions << "!" << endl;
-    float scoreBuf = score;
-    float questionBuf = maxQuestions;
+    cout << "Final Score " << totalRight << " out of " << questionsTaken << "!" << endl;
+    float scoreBuf = totalRight;
+    float questionBuf = questionsTaken;
     
     cout << "That's " << (scoreBuf/questionBuf)*100.0 << " Percent!" << endl;
 
-    
     return 0;
 }
 
@@ -79,21 +84,14 @@ void delay(int mSec){
     this_thread::sleep_for(chrono::milliseconds(mSec));
 }
 
-//Doesn't work due to path issues.
-void loadQuestions(){
-    QuestionBuilder builder = QuestionBuilder();
-    builder.findDir();
-    
-    builder.generate("basequestions.txt");
-    for(int i = 0; i < maxQuestions; i++){
-        questions[i] = builder.generated[i];
-    }
-}
-
 void gameLoop(){
+    score = 0;
+    questionsTaken += maxQuestions;
+    
     //Introduction
+    cout << dashes << endl;
     cout << "Quiz has begun!" << endl;
-    cout << "Catagory: " + catagory;
+    cout << "Catagory: " + catagory << endl;
     cout << dashes << endl;
     
     //A buffer to hold the user's input throughout the program.
@@ -101,10 +99,10 @@ void gameLoop(){
     
     //Main game loop of asking questions.
     for(int i = 0; i < maxQuestions; i++){
-        delay(750); //Delay slightly before each question
+        delay(500); //Delay slightly before each question
         
         //Tell them what question it is and state the question.
-        cout << "Question Number? " << i+1 << endl;
+        cout << "Question Number " << i+1 << "   Catagory " + catagory << endl;
         cout << dashes << endl;
         questions[i].printQuestion();
         
@@ -143,18 +141,34 @@ void gameLoop(){
     cout << "That's " << (scoreBuf/questionBuf)*100.0 << " Percent!" << endl;
     
     cout << dashes << endl;
+    
+    endCatagory();
+    
+    delay(750);
+}
+
+void endCatagory(){
+    totalRight += score;
+    catScore[catNum] = score;
+    catComplete[catNum] = true;
 }
 
 void offerQuestions(){
     cout << dashes << endl;
     cout << "Choose a step in the design process." << endl;
     cout << dashes << endl;
-    cout << "A: Defining" << endl;
-    cout << "B: Ideating" << endl;
-    cout << "C: Prototyping" << endl;
-    cout << "D: Testing" << endl;
-    cout << "E: Making" << endl;
-    cout << "F: Sharing" << endl;
+    if(catComplete[0] == false)
+        cout << "A: Defining" << endl;
+    if(catComplete[1] == false)
+        cout << "B: Ideating" << endl;
+    if(catComplete[2] == false)
+        cout << "C: Prototyping" << endl;
+    if(catComplete[3] == false)
+        cout << "D: Testing" << endl;
+    if(catComplete[4] == false)
+        cout << "E: Making" << endl;
+    if(catComplete[5] == false)
+        cout << "F: Sharing" << endl;
     cout << "G: End Quiz" << endl;
     
     string input;
@@ -162,10 +176,10 @@ void offerQuestions(){
     do{
         cin >> input;
         
-        if(input.compare("A") == 0 || input.compare("B") == 0 || input.compare("C") == 0 || input.compare("D") == 0 || input.compare("E") == 0 || input.compare("F") == 0 || input.compare("G")){
+        if((input.compare("A") == 0 && catComplete[0] == false) || (input.compare("B") == 0 && catComplete[1] == false) || input.compare("C") == 0 || input.compare("D") == 0 || input.compare("E") == 0 || input.compare("F") == 0 || input.compare("G") == 0){
             valid = true;
         }else{
-            cout << "Sorry, you must enter a letter based on the catagory. (A, B, C, D, E, F, or G)" << endl;
+            cout << "Sorry, you must enter a letter based on the catagory you have not already taken." << endl;
         }
     }while(valid == false);
     
@@ -173,24 +187,30 @@ void offerQuestions(){
         cout << "Alright, loading those questions" << endl;
     }
     
-    if(input.compare("A") == 0 && catComplete[0] == false){
+    if(input.compare("A") == 0){
         defining();
         catagory = "Defining";
+        catNum = 0;
     }else if(input.compare("B") == 0){
         ideating();
         catagory = "Ideating";
+        catNum = 1;
     }else if(input.compare("C") == 0){
         prototyping();
         catagory = "Prototyping";
+        catNum = 2;
     }else if(input.compare("D") == 0){
         testing();
         catagory = "Testing";
+        catNum = 3;
     }else if(input.compare("E") == 0){
         making();
         catagory = "Making";
+        catNum = 4;
     }else if(input.compare("F") == 0){
         sharing();
         catagory = "Sharing";
+        catNum = 5;
     }else if(input.compare("G") == 0){
         inQuiz = false;
     }
