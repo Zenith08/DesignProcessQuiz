@@ -71,6 +71,7 @@ int main(int argc, const char * argv[]) {
     
     cout << dashes << endl;
     cout << "Quiz ended. Thanks for playing." << endl;
+    cout << dashes << endl;
     cout << "Final Score " << totalRight << " out of " << questionsTaken << "!" << endl;
     float scoreBuf = totalRight;
     float questionBuf = questionsTaken;
@@ -133,7 +134,7 @@ void gameLoop(){
     
     //Ends the game and gives summary statistics of the users performance.
     cout << dashes << endl;
-    cout << "Quiz Finished!" << endl;
+    cout << "Catagory Finished!" << endl;
     cout << "Final Score " << score << " out of " << maxQuestions << "!" << endl;
     float scoreBuf = score;
     float questionBuf = maxQuestions;
@@ -176,7 +177,7 @@ void offerQuestions(){
     do{
         cin >> input;
         
-        if((input.compare("A") == 0 && catComplete[0] == false) || (input.compare("B") == 0 && catComplete[1] == false) || input.compare("C") == 0 || input.compare("D") == 0 || input.compare("E") == 0 || input.compare("F") == 0 || input.compare("G") == 0){
+        if((input.compare("A") == 0 && catComplete[0] == false) || (input.compare("B") == 0 && catComplete[1] == false) || (input.compare("C") == 0 && catComplete[2] == false) || (input.compare("D") == 0 && catComplete[3] == false) || (input.compare("E") == 0 && catComplete[4] == false) || (input.compare("F") == 0 && catComplete[5] == false) || input.compare("G") == 0){
             valid = true;
         }else{
             cout << "Sorry, you must enter a letter based on the catagory you have not already taken." << endl;
