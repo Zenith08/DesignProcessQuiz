@@ -12,7 +12,6 @@
 //
 //  Known Limitations: The answer must be upper case A, B, C, or D.
 //                     The catagory must be upper case A, B, C, D, E, F, or G.
-//                     Ending the quiz without answering questions gets a score of nan.
 
 #include <iostream>
 
@@ -69,14 +68,40 @@ int main(int argc, const char * argv[]) {
         }
     }
     
-    cout << dashes << endl;
-    cout << "Quiz ended. Thanks for playing." << endl;
-    cout << dashes << endl;
-    cout << "Final Score " << totalRight << " out of " << questionsTaken << "!" << endl;
-    float scoreBuf = totalRight;
-    float questionBuf = questionsTaken;
+    //Ending the game and quitting
+    if(questionsTaken > 0){
+        cout << dashes << endl;
+        cout << "Quiz ended. Thanks for playing." << endl;
+        //cout << dashes << endl;
+        cout << "Final Score " << totalRight << " out of " << questionsTaken << "!" << endl;
+        
+        float scoreBuf = totalRight;
+        float questionBuf = questionsTaken;
+        float percentBuf = (scoreBuf/questionBuf)*100.0;
     
-    cout << "That's " << (scoreBuf/questionBuf)*100.0 << " Percent!" << endl;
+        cout << "That's " << percentBuf << " Percent!" << endl;
+        
+        if(percentBuf >= 86.0){
+            cout << "That's an A!" << endl;
+        }else if(percentBuf < 86.0 && percentBuf >= 73.0){
+            cout << "That's a B!"  << endl;
+        }else if (percentBuf < 73.0 && percentBuf >= 67.0){
+            cout << "That's a C+!" << endl;
+        }else if (percentBuf < 67.0 && percentBuf >= 60.0){
+            cout << "That's a C!" << endl;
+        }else if (percentBuf < 60 && percentBuf >= 50.0){
+            cout << "That's a C-!" << endl;
+        }else if (percentBuf < 50){
+            cout << "That's an F!" << endl;
+        }
+        
+        cout << dashes << endl;
+    }else{
+        cout << dashes << endl;
+        cout << "You ended the quiz without completing any questions!" << endl;
+        cout << "Next time, try out some of the catagories." << endl;
+        cout << dashes << endl;
+    }
 
     return 0;
 }
@@ -103,7 +128,8 @@ void gameLoop(){
         delay(500); //Delay slightly before each question
         
         //Tell them what question it is and state the question.
-        cout << "Question Number " << i+1 << "   Catagory " + catagory << endl;
+        cout << dashes << endl;
+        cout << "Question Number " << i+1 << "   Catagory: " + catagory << endl;
         cout << dashes << endl;
         questions[i].printQuestion();
         
@@ -123,11 +149,10 @@ void gameLoop(){
         //Now we need to see if it is the correct answer.
         if(questions[i].isCorrect(ans)){
             score++;
-            cout << "Correct, good job." << endl;
+            cout << "Correct, good job." << endl << endl;
         }else{
-            cout << "Sorry, wrong answer. The correct answer was " + questions[i].getCorrectAns() << endl;
+            cout << "Sorry, wrong answer. The correct answer was " + questions[i].getCorrectAns() << endl << endl;
         }
-        cout << dashes << endl;
     }
     
     delay(500); //Small delay before results.
@@ -216,7 +241,7 @@ void offerQuestions(){
         inQuiz = false;
     }
     
-    delay(1000);
+    delay(500);
 }
 
 //All of the questions which will be aksed. ---------------------------------------------
