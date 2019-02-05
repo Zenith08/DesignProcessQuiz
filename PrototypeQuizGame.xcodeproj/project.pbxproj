@@ -10,6 +10,7 @@
 		2E5CAC092200C1D200DA6252 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CAC082200C1D200DA6252 /* main.cpp */; };
 		2E5CAC112200C9F800DA6252 /* MultipleChoiceQuestion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CAC0F2200C9F800DA6252 /* MultipleChoiceQuestion.cpp */; };
 		2E7495672203937A007059D2 /* QuestionBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E7495652203937A007059D2 /* QuestionBuilder.cpp */; };
+		2E781AC0220A04D30045763D /* StringUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E781ABE220A04D30045763D /* StringUtils.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		2E5CAC102200C9F800DA6252 /* MultipleChoiceQuestion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MultipleChoiceQuestion.hpp; sourceTree = "<group>"; };
 		2E7495652203937A007059D2 /* QuestionBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuestionBuilder.cpp; sourceTree = "<group>"; };
 		2E7495662203937A007059D2 /* QuestionBuilder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuestionBuilder.hpp; sourceTree = "<group>"; };
+		2E781ABE220A04D30045763D /* StringUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtils.cpp; sourceTree = "<group>"; };
+		2E781ABF220A04D30045763D /* StringUtils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StringUtils.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				2E5CAC082200C1D200DA6252 /* main.cpp */,
+				2E781ABE220A04D30045763D /* StringUtils.cpp */,
+				2E781ABF220A04D30045763D /* StringUtils.hpp */,
 				2E7495652203937A007059D2 /* QuestionBuilder.cpp */,
 				2E7495662203937A007059D2 /* QuestionBuilder.hpp */,
 				2E5CAC0F2200C9F800DA6252 /* MultipleChoiceQuestion.cpp */,
@@ -129,6 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E781AC0220A04D30045763D /* StringUtils.cpp in Sources */,
 				2E7495672203937A007059D2 /* QuestionBuilder.cpp in Sources */,
 				2E5CAC112200C9F800DA6252 /* MultipleChoiceQuestion.cpp in Sources */,
 				2E5CAC092200C1D200DA6252 /* main.cpp in Sources */,
