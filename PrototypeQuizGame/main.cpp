@@ -20,6 +20,7 @@
 
 #include "MultipleChoiceQuestion.hpp"
 #include "QuestionBuilder.hpp"
+#include "StringUtils.hpp"
 
 using namespace std;
 
@@ -139,6 +140,7 @@ void gameLoop(){
         do{
             //Get the answer and validate against what is considered a valid answer.
             cin >> ans;
+            ans = StringUtil::toUpperCase(ans);
             if(questions[i].validAns(ans)){
                 
             }else{
@@ -202,7 +204,7 @@ void offerQuestions(){
     bool valid = false;
     do{
         cin >> input;
-        
+        input = StringUtil::toUpperCase(input);
         if((input.compare("A") == 0 && catComplete[0] == false) || (input.compare("B") == 0 && catComplete[1] == false) || (input.compare("C") == 0 && catComplete[2] == false) || (input.compare("D") == 0 && catComplete[3] == false) || (input.compare("E") == 0 && catComplete[4] == false) || (input.compare("F") == 0 && catComplete[5] == false) || input.compare("G") == 0){
             valid = true;
         }else{

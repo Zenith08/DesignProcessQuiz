@@ -14,7 +14,7 @@
 #include <string>
 #include <cstring>
 
-class StringUtil{
+namespace StringUtil{
     std::string toUpperCase(std::string valueIn);
 };
 
