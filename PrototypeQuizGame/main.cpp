@@ -10,8 +10,6 @@
 //  Date Created: January 29, 2019
 //  Date last modified: Sometime after that.
 //
-//  Known Limitations: The answer must be upper case A, B, C, or D.
-//                     The catagory must be upper case A, B, C, D, E, F, or G.
 
 #include <iostream>
 
@@ -50,7 +48,7 @@ void endCatagory();
 
 //Question catagories
 bool catComplete[6];
-int catScore[6];
+//int catScore[6];
 bool inQuiz = true;
 
 void defining();
@@ -108,10 +106,12 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
+//Waits for a specific number of milliseconds.
 void delay(int mSec){
     this_thread::sleep_for(chrono::milliseconds(mSec));
 }
 
+//Runs a catagory of questions based on set global variables.
 void gameLoop(){
     score = 0;
     questionsTaken += maxQuestions;
@@ -176,12 +176,14 @@ void gameLoop(){
     delay(750);
 }
 
+//Stores the data from this catagory into arrays which can be used later.
 void endCatagory(){
     totalRight += score;
-    catScore[catNum] = score;
+    //catScore[catNum] = score;
     catComplete[catNum] = true;
 }
 
+//Offers the catagories of questions to the player.
 void offerQuestions(){
     cout << dashes << endl;
     cout << "Choose a step in the design process." << endl;

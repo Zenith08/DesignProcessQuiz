@@ -15,6 +15,7 @@
 #include <cstring>
 
 namespace StringUtil{
+    //Converts a single character string of a, b, c, d, e, f, or g to it's upper case equivilant of A, B, C, D, E, F, or G/
     std::string toUpperCase(std::string valueIn);
 };
 

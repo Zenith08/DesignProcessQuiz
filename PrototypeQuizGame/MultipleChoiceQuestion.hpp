@@ -27,6 +27,7 @@ public:
     //The constructor to allow the array creation to work.
     MCQuestion();
     //Prints the question to the screen after formating.
+    //Also prints the answers.
     void printQuestion();
     //Returns true if the input matches this questions correct answer.
     bool isCorrect(string letter);
@@ -36,6 +37,7 @@ public:
     string getCorrectAns();
     
     //Builder methods should not be used by code except to generate questions
+    //Sets the associated internal variable to the passed variable.
     void setQuestion(string qIn);
     void setA(string aIn);
     void setB(string bIn);

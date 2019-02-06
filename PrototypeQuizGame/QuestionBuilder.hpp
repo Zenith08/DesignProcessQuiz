@@ -14,11 +14,13 @@
 
 class QuestionBuilder{
 public:
+    //Supposed to be a buffer of the questions generated before they are put into the main game loop.
     MCQuestion generated[10];
-    
+    //Asks for the questions to be made using the file specified.
     void generate(string file);
     
     //TEMP
+    //A test method to try and write a file to find what directory it is located in.
     void findDir();
 };
 

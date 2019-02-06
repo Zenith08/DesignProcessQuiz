@@ -9,10 +9,12 @@
 #include "MultipleChoiceQuestion.hpp"
 #include <iostream>
 
+//A default constructor to allow the program to use the class in an array.
 MCQuestion::MCQuestion(){
     MCQuestion("", "", "", "", "", "");
 }
 
+//A constructor which creates the multiple choice question with values for the question, all answers, and a correct answer.
 MCQuestion::MCQuestion(string quest, string a, string b, string c, string d, string cAns){
     question = quest;
     answers[0] = a;
@@ -20,30 +22,31 @@ MCQuestion::MCQuestion(string quest, string a, string b, string c, string d, str
     answers[2] = c;
     answers[3] = d;
     correct = cAns;
-};
+}
 
 void MCQuestion::printQuestion(){
-    cout << question << endl;
-    cout << "A) " + answers[0] + "    B) " + answers[1] << endl;
-    cout << "C) " + answers[2] + "    D) " + answers[3] << endl;
+    cout << question << endl; //Prints the question
+    cout << "A) " + answers[0] + "    B) " + answers[1] << endl; //Should appear as A) <answer a>    B) <answer b>
+    cout << "C) " + answers[2] + "    D) " + answers[3] << endl; //Should appear as C) <answer c>    D) <answer d>
 }
 
 bool MCQuestion::isCorrect(string letter){
-    if(letter.compare(correct) == 0){
+    if(letter.compare(correct) == 0){ //If the input string matches the preset correct answer, this is true.
         return true;
     }else{
-        return false;
+        return false; //Otherwise it's false.
     }
 }
 
 bool MCQuestion::validAns(string check){
-    if(check.compare("A") == 0 || check.compare("B") == 0 || check.compare("C") == 0 || check.compare("D") == 0){
+    if(check.compare("A") == 0 || check.compare("B") == 0 || check.compare("C") == 0 || check.compare("D") == 0){ //If the input string can be a possible answer, then this returns true.
         return true;
     }else{
-        return false;
+        return false; //Otherwise it returns false.
     }
 }
 
+//Returns the string representing the correct answer.
 string MCQuestion::getCorrectAns(){
     return correct;
 }

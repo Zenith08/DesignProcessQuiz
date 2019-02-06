@@ -12,6 +12,7 @@
 #include <iostream>
 #include "QuestionBuilder.hpp"
 
+//A not working idea to generate questions from file streaming.
 void QuestionBuilder::generate(string file){
     ifstream inFile(file);
     
