@@ -28,5 +28,5 @@ string StringUtil::toUpperCase(string valueIn){
         return "G";
     }
     
-    return "null";
+    return valueIn;
 }
